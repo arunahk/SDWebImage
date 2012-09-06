@@ -75,6 +75,11 @@
 
 - (void)webImageManager:(SDWebImageManager *)imageManager didFinishWithImage:(UIImage *)image
 {
+    // Sometimes request get loaded without giving error.
+    // But image not received.
+    if (image.size.width <= 0 || image.size.height <= 0)
+        return;
+        
     self.image = image;
     [self setNeedsLayout];
 }
